@@ -1,0 +1,57 @@
+// # Typography
+
+// ## Configuration
+
+// All vertical heights are based off of this base line height.
+$base-line-height = 22px
+
+
+// ## Helpers & Behavior
+
+// Gives you a height that is a multiple of the base line height
+rhythm($multiplier)
+  $multiplier * $base-line-height
+
+// Whenever you set the font size, you also get a line height that is a multiple
+// of the base.
+font-size($size)
+  font-size:   $size
+  line-height: rhythm(ceil($size / $base-line-height))
+
+
+// ## Document Typesetting
+body
+  -webkit-text-size-adjust: 100%
+
+document
+  font-family:  'HelveticaNeue-Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-weight:  300
+  font-size:    16px
+p
+  margin: rhythm(1) 0
+
+
+// ## Code Typesetting
+code
+  font-family: 'Menlo', 'Droid Sans Mono', 'Courier New', 'Courier', monospace
+  font-weight:  normal
+  font-size:    14px
+
+
+// ## Code Typesetting
+h1, h2, h3, h4, h5, h6
+  font-family: 'Optima-Bold', 'Optima', 'Candara-Bold', 'Candara', 'Arial', sans-serif
+  font-weight:  700
+  margin:       rhythm(2) 0 rhythm(1) 0
+h1
+  font-size: 48px
+h2
+  font-size: 32px
+h3
+  font-size: 28px
+h3
+  font-size: 24px
+h4
+  font-size: 22px
+h5
+  font-size: 20px
