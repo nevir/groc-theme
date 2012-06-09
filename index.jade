@@ -26,8 +26,7 @@ html(lang="en")
         comments
           p Some junk
           p Some more junk
-        code
-          | def ohai
+        code def ohai
           |   "I'm code!"
           | end
 
@@ -35,3 +34,16 @@ html(lang="en")
         comments          
           p Nullam rhoncus tempor imperdiet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In tortor erat, sollicitudin vel vestibulum nec, molestie vel metus. Curabitur dictum ipsum vel justo convallis quis congue purus interdum. Nam nulla quam, faucibus a tristique vel, scelerisque sed lectus. Morbi lectus est, sodales vitae viverra sit amet, viverra quis ipsum. Integer tempor erat in enim vehicula vel cursus dui vestibulum. Nam accumsan vehicula nibh ac pharetra. Nulla eu sem in mi commodo gravida. Phasellus sed dui ac enim accumsan tincidunt a ac massa. Curabitur et lacinia sem.
           p Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut vitae quam non turpis lacinia laoreet. Nulla dui arcu, sollicitudin et ultricies a, congue et dolor. Praesent nibh dui, viverra eu condimentum eu, mattis eu est. Praesent ornare dui a eros euismod sit amet feugiat metus ultrices. Sed dictum tortor ut est tristique pharetra. Quisque nec lacus et dui eleifend ullamcorper sed quis velit. Donec ipsum nulla, varius sed tincidunt et, accumsan sit amet nisl. Nullam fringilla vestibulum magna, quis accumsan tortor sagittis aliquam. Vivamus aliquet elit sed leo ultrices vulputate. Integer ultrices facilisis pulvinar. Nullam ac odio vel urna faucibus lobortis. Morbi vitae condimentum est. Nullam laoreet dolor ac est aliquet id mollis velit hendrerit. In sit amet lacus at est auctor sodales in ut diam.
+
+    nav
+      menu
+        action#github Github
+        action#table-of-contents ToC
+        action#outline Outline
+        // input fields don't appear to respond to box-flex properly
+        section.search
+          input#search(type="search")
+      toc
+        | Table of Contents
+      outline
+        | Outline and stuff

@@ -1,3 +1,29 @@
+debug-overlay($color)
+  &:before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    height: 100%
+    width: 100%
+    background: rgba($color, 5%)
+    border: 1px solid rgba($color, 50%)
+    pointer-events: none
+
 body > *
-  background: linear-gradient(top, transparent, transparent $base-line-height - 1, rgba(black, 0.3) $base-line-height) 
+  background: linear-gradient(top, transparent, transparent $base-line-height - 1, rgba(black, 0.2) $base-line-height) 
   background-size: 100% $base-line-height
+
+nav
+  debug-overlay: #990000
+  menu
+    debug-overlay: #ff00ff
+
+document
+  debug-overlay: #000099
+segment
+  > comments
+    debug-overlay: #009900
+  > code
+    debug-overlay: #990099
+

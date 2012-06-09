@@ -1,2 +1,68 @@
+// # Layout
+
+// When displaying commentary in two-column mode, this is the width we want.
+$commentary-max-width = rhythm(25)
+// This is the width of the nav bar when shown on a medium/large screen
+$nav-min-width = rhythm(16)
+
+
+// ## Common Layout
+
+// ### Content
 document
-  padding: rhythm(1)
+  position: relative
+  // Regardless of screen size, we have enough padding up top to fit the `nav`.
+  // This allows for sane transitions, and also just feels good, aesthetically.
+  padding: rhythm(2.5) 0px
+ 
+  // This is the signature layout: commentary side by side w/ code.  The nav
+  // also expands so that we end up with a three column layout when it's active.
+  segment
+    display: box
+    > comments
+      width: $commentary-max-width
+    > code
+      box-flex: 1
+
+// Perhaps counterintuitively, we use padding instead of margins.  This helps
+// avoid situations where margins escape the node and influence its ancesors,
+// and just generally keeps things more sane. 
+p, code
+  padding: rhythm(0.5) 0px
+h1, h2, h3, h4, h5, h6
+  padding: rhythm(1.5) 0px rhythm(0.5) 0px
+segment
+  position: relative
+  > *
+    position: relative
+    padding-left:  rhythm(1)
+    padding-right: rhythm(1)
+
+// ### Navigation
+
+// The nav is always top right, but the width can change.
+nav
+  position: absolute
+  top:      0px
+  right:    0px
+  width:    $nav-min-width
+  // TEMPORARY
+  toc, outline
+    display: none
+
+// The menu is arranged in a traditional toolbar format
+nav menu
+  position: relative
+  display: box
+  > *
+    height:  rhythm(2)
+    padding: rhythm(0.5)
+  // The search box expands to fill any remaining room
+  .search
+    box-flex: 1
+    #search
+      width: 100%
+
+
+// ## Large Screens
+

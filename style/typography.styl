@@ -21,28 +21,22 @@ font-size($size)
 
 // ## Document Typesetting
 body
-  -webkit-text-size-adjust: 100%
-
-document
-  font-family:  'HelveticaNeue-Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
-  font-weight:  300
-  font-size:    16px
-p
-  margin: rhythm(1) 0
-
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-weight: 300
+  font-size:   16px
 
 // ## Code Typesetting
 code
-  font-family: 'Menlo', 'Droid Sans Mono', 'Courier New', 'Courier', monospace
+  font-family: 'Menlo', 'Droid Sans Mono', 'Consolas', 'Courier New', 'Courier', monospace
   font-weight:  normal
   font-size:    14px
 
 
 // ## Code Typesetting
 h1, h2, h3, h4, h5, h6
-  font-family: 'Optima-Bold', 'Optima', 'Candara-Bold', 'Candara', 'Arial', sans-serif
-  font-weight:  700
-  margin:       rhythm(2) 0 rhythm(1) 0
+  font-family:   'Optima-Bold', 'Optima', 'Candara-Bold', 'Candara', 'Arial', sans-serif
+  font-weight:    700
+  text-rendering: optimizeLegibility;
 h1
   font-size: 48px
 h2
@@ -55,3 +49,8 @@ h4
   font-size: 22px
 h5
   font-size: 20px
+
+
+// ## Browser-Specific Behavior
+body
+  -webkit-text-size-adjust: 100%
