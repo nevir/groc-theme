@@ -46,14 +46,17 @@ nav menu, nav sections
 
 // The menu is arranged in a traditional toolbar format
 nav menu
-  display: box
+  // No flex boxing in absolute elements on Gecko :(
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=643984
+  display: table-row
   z-index: 1000
   > *
-    height:  rhythm(2)
-    padding: rhythm(0.5)
+    display:     table-cell
+    line-height: rhythm(2)
+    padding:     0px rhythm(0.5)
   // The search box expands to fill any remaining room
   .search
-    box-flex: 1
+    width: 100%
     #search
       width: 100%
 

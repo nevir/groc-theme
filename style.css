@@ -220,22 +220,16 @@ nav sections {
   width: 352px;
 }
 nav menu {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -o-box;
-  display: -ms-box;
-  display: box;
+  display: table-row;
   z-index: 1000;
 }
 nav menu > * {
-  height: 44px;
-  padding: 11px;
+  display: table-cell;
+  line-height: 44px;
+  padding: 0px 11px;
 }
 nav menu .search {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
+  width: 100%;
 }
 nav menu .search #search {
   width: 100%;
