@@ -208,27 +208,23 @@ h5,
 h6 {
   padding: 33px 0px 11px 0px;
 }
-segment {
-  position: relative;
-}
 segment > * {
-  position: relative;
   padding-left: 22px;
   padding-right: 22px;
 }
-nav {
+nav > * {
   position: absolute;
   top: 0px;
   right: 0px;
   width: 352px;
 }
 nav menu {
-  position: relative;
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;
   display: -ms-box;
   display: box;
+  z-index: 1000;
 }
 nav menu > * {
   height: 44px;
@@ -242,6 +238,11 @@ nav menu .search {
 }
 nav menu .search #search {
   width: 100%;
+}
+nav sections {
+  top: 44px;
+  bottom: 0px;
+  z-index: 1010;
 }
 @media (max-width: 550px) {
   nav {
@@ -277,62 +278,64 @@ nav menu .search #search {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
+  html,
   body {
-    overflow: hidden;
+    height: 100%;
   }
 }
 document,
-nav {
+nav menu {
   -webkit-transform: translate3d(0, 0, 0);
 }
-nav {
-  -webkit-transition: height 0ms 350ms;
-  -moz-transition: height 0ms 350ms;
-  -o-transition: height 0ms 350ms;
-  -ms-transition: height 0ms 350ms;
-  transition: height 0ms 350ms;
-  height: 0%;
-}
-.nav-expanded nav {
-  -webkit-transition: height 0ms 0ms;
-  -moz-transition: height 0ms 0ms;
-  -o-transition: height 0ms 0ms;
-  -ms-transition: height 0ms 0ms;
-  transition: height 0ms 0ms;
-  height: 100%;
-}
-.nav-expanded nav sections {
-  -webkit-transition: -webkit-transform 350ms;
-  -moz-transition: -moz-transform 350ms;
-  -o-transition: -o-transform 350ms;
-  -ms-transition: -ms-transform 350ms;
-  -webkit-transform: translate3d(100%, 0, 0);
-  -moz-transform: translate3d(100%, 0, 0);
-  -o-transform: translate3d(100%, 0, 0);
-  -ms-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
-}
 @media (max-width: 550px) {
-  body {
-    background: #008000;
+  & {
+    foo: bar;
   }
 }
 @media (min-width: 551px) and (max-width: 901px) {
-  body {
-    background: #00f;
+  sections {
+    -webkit-transition: -webkit-transform 350ms, opacity 350ms, right 0ms 350ms;
+    -moz-transition: -moz-transform 350ms, opacity 350ms, right 0ms 350ms;
+    -o-transition: -o-transform 350ms, opacity 350ms, right 0ms 350ms;
+    -ms-transition: -ms-transform 350ms, opacity 350ms, right 0ms 350ms;
+    opacity: 0;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    right: 300%;
+  }
+  .nav-expanded sections {
+    -webkit-transition: -webkit-transform 350ms, opacity 350ms, right 0ms 0ms;
+    -moz-transition: -moz-transform 350ms, opacity 350ms, right 0ms 0ms;
+    -o-transition: -o-transform 350ms, opacity 350ms, right 0ms 0ms;
+    -ms-transition: -ms-transform 350ms, opacity 350ms, right 0ms 0ms;
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    right: 0;
   }
 }
 @media (min-width: 902px) {
   sections {
-    -webkit-transition: -webkit-transform 350ms;
-    -moz-transition: -moz-transform 350ms;
-    -o-transition: -o-transform 350ms;
-    -ms-transition: -ms-transform 350ms;
+    -webkit-transition: -webkit-transform 350ms, right 0ms 350ms;
+    -moz-transition: -moz-transform 350ms, right 0ms 350ms;
+    -o-transition: -o-transform 350ms, right 0ms 350ms;
+    -ms-transition: -ms-transform 350ms, right 0ms 350ms;
     -webkit-transform: translate3d(100%, 0, 0);
     -moz-transform: translate3d(100%, 0, 0);
     -o-transform: translate3d(100%, 0, 0);
     -ms-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
+    right: 300%;
   }
   document {
     -webkit-transition: right 0ms 0ms;
@@ -350,10 +353,15 @@ nav {
     right: 352px;
   }
   .nav-expanded nav sections {
+    -webkit-transition: -webkit-transform 350ms, right 0ms 0ms;
+    -moz-transition: -moz-transform 350ms, right 0ms 0ms;
+    -o-transition: -o-transform 350ms, right 0ms 0ms;
+    -ms-transition: -ms-transform 350ms, right 0ms 0ms;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    right: 0;
   }
 }

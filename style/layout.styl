@@ -30,27 +30,24 @@ p, code
   padding: rhythm(0.5) 0px
 h1, h2, h3, h4, h5, h6
   padding: rhythm(1.5) 0px rhythm(0.5) 0px
-segment
-  position: relative
-  > *
-    position: relative
-    padding-left:  rhythm(1)
-    padding-right: rhythm(1)
+segment > *
+  padding-left:  rhythm(1)
+  padding-right: rhythm(1)
 
 // ### Navigation
 
-// The nav is always top right, but the width can change.
-nav
+// Nav components are always top right.  We don't position the nav, though, so
+// that we have more control over animations.
+nav > *
   position: absolute
   top:      0px
   right:    0px
   width:    $nav-min-width
-  
 
 // The menu is arranged in a traditional toolbar format
 nav menu
-  position: relative
   display: box
+  z-index: 1000
   > *
     height:  rhythm(2)
     padding: rhythm(0.5)
@@ -60,6 +57,11 @@ nav menu
     #search
       width: 100%
 
+// Nav sections, while hidden by default, expand below the nav (full height)
+nav sections
+  top:     rhythm(2)
+  bottom:  0px
+  z-index: 1010
 
 // ## Small Screens
 
@@ -101,6 +103,6 @@ nav menu
     overflow: auto
     -webkit-overflow-scrolling: touch
 
-  // Similarly, we don't want anything overflowing our custom scroll areas
-  body
-    overflow: hidden
+  // And make sure that our body doesn't collapse to nothingness
+  html, body
+    height: 100%
