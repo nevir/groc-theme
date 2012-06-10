@@ -19,22 +19,3 @@ window.ClientDetect =
     div$.remove()
 
     result
-
-DISABLE_TRANSITION = """
-  -webkit-transition: none !important;
-  -moz-transition:    none !important;
-  -o-transition       none !important;
-  -ms-transition      none !important;
-  transition:         none !important;
-"""
-
-Zepto.fn.cssNoTrans = (args...) ->
-  @css args...
-  finalStyle = @attr 'style'
-
-  # Apparently setting the JS style properties doesn't catch; so we set the
-  # style attribute directly.
-  @attr 'style', "#{finalStyle}; #{DISABLE_TRANSITION}"
-
-  # Allow transitions after this run loop iteration
-  setTimeout (=> @attr 'style', finalStyle), 0
