@@ -23,8 +23,11 @@ Zepto.fn.cssNoTrans = (args...) ->
   # style attribute directly.
   @attr 'style', "#{finalStyle}; #{DISABLE_TRANSITION}"
 
-  # Allow transitions after this run loop iteration
-  setTimeout (=> @attr 'style', finalStyle), 0
+  # Allow transitions after this run loop iteration.
+  # 
+  # Annoyingly, Gecko seems to treat short intervals as part of the same render
+  # loop iteration; using `requestAnimationFrame` isn't even short enough...
+  setTimeout (=> @attr 'style', finalStyle), 50
 
 # Adapted from https://raw.github.com/joelambert/ScrollFix (MIT Licensed)
 Zepto.fn.scrollFix = ->

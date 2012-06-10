@@ -26,7 +26,7 @@
     this.attr('style', "" + finalStyle + "; " + DISABLE_TRANSITION);
     return setTimeout((function() {
       return _this.attr('style', finalStyle);
-    }), 0);
+    }), 50);
   };
 
   Zepto.fn.scrollFix = function() {

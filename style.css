@@ -295,11 +295,11 @@ nav .sections-wrapper {
   width: 352px;
   height: 0%;
   overflow: hidden;
-  -webkit-transition: height 0ms 2250ms;
-  -moz-transition: height 0ms 2250ms;
-  -o-transition: height 0ms 2250ms;
-  -ms-transition: height 0ms 2250ms;
-  transition: height 0ms 2250ms;
+  -webkit-transition: height 0ms 225ms;
+  -moz-transition: height 0ms 225ms;
+  -o-transition: height 0ms 225ms;
+  -ms-transition: height 0ms 225ms;
+  transition: height 0ms 225ms;
 }
 @media (max-width: 550px) {
   nav .sections-wrapper {
@@ -318,11 +318,11 @@ sections {
   overflow: hidden;
 }
 nav sections > * {
-  -webkit-transition: left 2250ms;
-  -moz-transition: left 2250ms;
-  -o-transition: left 2250ms;
-  -ms-transition: left 2250ms;
-  transition: left 2250ms;
+  -webkit-transition: left 225ms;
+  -moz-transition: left 225ms;
+  -o-transition: left 225ms;
+  -ms-transition: left 225ms;
+  transition: left 225ms;
 }
 nav sections.toc-active toc {
   left: 0;
@@ -338,19 +338,19 @@ nav sections.outline-active outline {
 }
 @media (max-width: 550px) {
   nav sections {
-    -webkit-transition: right 2250ms;
-    -moz-transition: right 2250ms;
-    -o-transition: right 2250ms;
-    -ms-transition: right 2250ms;
-    transition: right 2250ms;
+    -webkit-transition: right 225ms;
+    -moz-transition: right 225ms;
+    -o-transition: right 225ms;
+    -ms-transition: right 225ms;
+    transition: right 225ms;
     right: -100%;
   }
   document {
-    -webkit-transition: left 2250ms;
-    -moz-transition: left 2250ms;
-    -o-transition: left 2250ms;
-    -ms-transition: left 2250ms;
-    transition: left 2250ms;
+    -webkit-transition: left 225ms;
+    -moz-transition: left 225ms;
+    -o-transition: left 225ms;
+    -ms-transition: left 225ms;
+    transition: left 225ms;
     left: 0;
   }
   .nav-expanded nav sections {
@@ -362,10 +362,10 @@ nav sections.outline-active outline {
 }
 @media (min-width: 551px) and (max-width: 901px) {
   nav sections {
-    -webkit-transition: -webkit-transform 2250ms, opacity 2250ms;
-    -moz-transition: -moz-transform 2250ms, opacity 2250ms;
-    -o-transition: -o-transform 2250ms, opacity 2250ms;
-    -ms-transition: -ms-transform 2250ms, opacity 2250ms;
+    -webkit-transition: -webkit-transform 225ms, opacity 225ms;
+    -moz-transition: -moz-transform 225ms, opacity 225ms;
+    -o-transition: -o-transform 225ms, opacity 225ms;
+    -ms-transition: -ms-transform 225ms, opacity 225ms;
     opacity: 0;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     filter: alpha(opacity=0);
@@ -388,11 +388,11 @@ nav sections.outline-active outline {
 }
 @media (min-width: 902px) {
   nav sections {
-    -webkit-transition: right 2250ms;
-    -moz-transition: right 2250ms;
-    -o-transition: right 2250ms;
-    -ms-transition: right 2250ms;
-    transition: right 2250ms;
+    -webkit-transition: right 225ms;
+    -moz-transition: right 225ms;
+    -o-transition: right 225ms;
+    -ms-transition: right 225ms;
+    transition: right 225ms;
     right: -100%;
   }
   document {
@@ -403,11 +403,11 @@ nav sections.outline-active outline {
     transition: right 0ms 0ms;
   }
   .nav-expanded document {
-    -webkit-transition: right 0ms 2250ms;
-    -moz-transition: right 0ms 2250ms;
-    -o-transition: right 0ms 2250ms;
-    -ms-transition: right 0ms 2250ms;
-    transition: right 0ms 2250ms;
+    -webkit-transition: right 0ms 225ms;
+    -moz-transition: right 0ms 225ms;
+    -o-transition: right 0ms 225ms;
+    -ms-transition: right 0ms 225ms;
+    transition: right 0ms 225ms;
     right: 352px;
   }
   .nav-expanded nav sections {
@@ -424,11 +424,11 @@ nav sections.outline-active outline {
     right: 0 !important;
   }
   nav menu {
-    -webkit-transition: right 2250ms;
-    -moz-transition: right 2250ms;
-    -o-transition: right 2250ms;
-    -ms-transition: right 2250ms;
-    transition: right 2250ms;
+    -webkit-transition: right 225ms;
+    -moz-transition: right 225ms;
+    -o-transition: right 225ms;
+    -ms-transition: right 225ms;
+    transition: right 225ms;
   }
   .nav-expanded nav menu {
     right: 0 !important;
@@ -441,12 +441,12 @@ nav .sections-wrapper {
 }
 @media (-webkit-transform-3d) and (max-width: 550px) {
   nav sections {
-    -webkit-transition: -webkit-transform 2250ms;
+    -webkit-transition: -webkit-transform 225ms;
     -webkit-transform: translate3d(100%, 0, 0);
     right: 0;
   }
   document {
-    -webkit-transition: -webkit-transform 2250ms;
+    -webkit-transition: -webkit-transform 225ms;
     -webkit-transform: translate3d(0, 0, 0);
   }
   .nav-expanded nav sections {
@@ -460,7 +460,7 @@ nav .sections-wrapper {
 }
 @media (-webkit-transform-3d) and (min-width: 902px) {
   nav sections {
-    -webkit-transition: -webkit-transform 2250ms;
+    -webkit-transition: -webkit-transform 225ms;
     -webkit-transform: translate3d(100%, 0, 0);
     right: 0;
   }
@@ -471,10 +471,4 @@ nav .sections-wrapper {
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
-}
-.sections-wrapper {
-  background: rgba(0,0,255,0.05);
-}
-sections {
-  background: rgba(255,0,0,0.05);
 }
