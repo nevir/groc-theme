@@ -321,6 +321,26 @@ nav .sections-wrapper {
   }
 }
 @media (max-width: 550px) {
+  nav > * {
+    right: 0 !important;
+  }
+}
+@media (min-width: 902px) {
+  nav .sections-wrapper {
+    right: 0 !important;
+  }
+  nav menu {
+    -webkit-transition: right 350ms;
+    -moz-transition: right 350ms;
+    -o-transition: right 350ms;
+    -ms-transition: right 350ms;
+    transition: right 350ms;
+  }
+  .nav-expanded nav menu {
+    right: 0 !important;
+  }
+}
+@media (max-width: 550px) {
   nav sections {
     -webkit-transform: translate3d(100%, 0, 0);
     -moz-transform: translate3d(100%, 0, 0);
