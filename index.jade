@@ -40,9 +40,9 @@ html(lang="en")
 
     nav
       menu
-        action#github Github
-        action#table-of-contents ToC
-        action#outline Outline
+        a.github(href='https://github.com/') Github
+        action.toc(data-target-section='toc') ToC
+        action.outline(data-target-section='outline') Outline
         // input fields don't appear to respond to box-flex properly
         section.search
           input#search(type="search")

@@ -239,6 +239,19 @@ nav sections {
   bottom: 0px;
   z-index: 1010;
 }
+nav sections > * {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+nav sections > *.active {
+  display: block;
+}
 @media (max-width: 550px) {
   nav menu,
   nav sections {
@@ -356,11 +369,6 @@ nav .sections-wrapper {
 }
 @media (min-width: 551px) and (max-width: 901px) {
   nav sections {
-    -webkit-transition: transform 225ms, opacity 225ms;
-    -moz-transition: transform 225ms, opacity 225ms;
-    -o-transition: transform 225ms, opacity 225ms;
-    -ms-transition: transform 225ms, opacity 225ms;
-    transition: transform 225ms, opacity 225ms;
     -webkit-transition: -webkit-transform 225ms, opacity 225ms;
     -moz-transition: -moz-transform 225ms, opacity 225ms;
     -o-transition: -o-transform 225ms, opacity 225ms;
@@ -415,8 +423,7 @@ nav .sections-wrapper {
 }
 document,
 nav menu,
-nav .sections-wrapper,
-nav sections {
+nav .sections-wrapper {
   -webkit-transform: translate3d(0, 0, 0);
 }
 @media (-webkit-transform-3d) and (max-width: 550px) {

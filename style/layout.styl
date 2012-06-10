@@ -66,6 +66,22 @@ nav sections
   bottom:  0px
   z-index: 1010
 
+  // Each section fills the container
+  > *
+    position: absolute
+    left:     0
+    top:      0
+    width:    100%
+    height:   100%
+    // overflows nicely
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    // And only one is visible at a time
+    display: none
+    &.active
+      display: block
+
+
 // ## Small Screens
 
 // `<= $commentary-max-width`

@@ -2,8 +2,21 @@
 (function() {
 
   $(function() {
-    return $('nav menu').on('click', function(evt) {
-      return $('html').toggleClass('nav-expanded');
+    var html$, sections$;
+    html$ = $('html');
+    sections$ = $('nav sections > *');
+    return $('nav menu action').on('click', function(evt) {
+      var active_section, target_section, _ref;
+      if (!(target_section = $(evt.target).data('target-section'))) {
+        return;
+      }
+      active_section = (_ref = sections$.filter('.active')[0]) != null ? _ref.nodeName.toLowerCase() : void 0;
+      if (html$.hasClass('nav-expanded') && active_section === target_section) {
+        return html$.removeClass('nav-expanded');
+      }
+      html$.addClass('nav-expanded');
+      sections$.removeClass('active');
+      return sections$.filter(target_section).addClass('active');
     });
   });
 
