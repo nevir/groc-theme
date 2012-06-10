@@ -2,9 +2,6 @@
 
 $nav-anim-duration = 350ms
 
-translate-right($right)
-  transform: translate3d($right * -1,0,0)
-
 // Until https://github.com/visionmedia/nib/pull/95
 transition-with-transform($args, $props...)
   unshift($props, unquote("transform") $args)
@@ -19,30 +16,63 @@ transition-with-transform($args, $props...)
 document, nav menu
   -webkit-transform: translate3d(0,0,0)
 
+// We use `.sections-wrapper` to clip our `nav sections` properly, it's a lot
+// simpler than dancing around browser bugs and animation states.
+nav .sections-wrapper
+  position: absolute
+  right:    0px
+  top:      0px
+  width:    100%
+  height:   0%
+  overflow: hidden
+  // On _return_, we flip back to a height of 0% _after_ the animation finishes.
+  transition: height 0ms $nav-anim-duration
+
+// On animation start, we immediately expand to full height.
+.nav-expanded nav .sections-wrapper
+  transition: height 0ms 0ms
+  height: 100%
+
+// One exception: For medium+ screen sizes, we only clip to the width of the
+// `nav`, so that the wrapper isn't overlaying content.
+@media (min-width: 551px)
+  .nav-expanded nav .sections-wrapper
+    transition: height 0ms 0ms, width 0ms $nav-anim-duration
+    width: $nav-min-width
 
 // ## Small Screens
 
 @media (max-width: 550px)
-  foo: bar
+  // We avoid a persistent header on small devices (`position: fixed` still
+  // isn't a great experience, even on recent WebKits - and
+  // `overflow-scrolling: touch` disables tap to tap behavior on an iPhone/iPod)
+  nav sections
+    transform: translate3d(100%,0,0)
+  document
+    transform: translate3d(0,0,0)
+  nav sections, document
+    transition-with-transform($nav-anim-duration)
+
+  .nav-expanded
+    nav sections
+      transform: translate3d(0,0,0)
+    document
+      transform: translate3d(-100%,0,0)
 
 // ## Medium Screens
 
 @media (min-width: 551px) and (max-width: 901px)
   // Since we don't have enough room to display three columns (`comments`,
   // `code`, `nav`), we opt to go with the pop-over approach.
-  sections
-    transition-with-transform($nav-anim-duration, "opacity" $nav-anim-duration, right 0ms $nav-anim-duration)
+  nav sections
+    transition-with-transform($nav-anim-duration, "opacity" $nav-anim-duration)
     // By default, faded and zoomed
     opacity:   0.0
     transform: scale(1.1)
-    // And also off the edge of the screen to avoid overflowing the body
-    right: 300%
 
-  .nav-expanded sections
-    transition-with-transform($nav-anim-duration, "opacity" $nav-anim-duration, right 0ms 0ms)
+  .nav-expanded nav sections
     opacity:   1.0
     transform: scale(1.0)
-    right: 0
 
 // ## Large Screens
 
@@ -50,12 +80,10 @@ document, nav menu
 // `$commentary-max-width + $nav-min-width`
 @media (min-width: 902px)
   // We slide the nav panes in for this three column mode
-  sections
-    transition-with-transform($nav-anim-duration, right 0ms $nav-anim-duration)
+  nav sections
+    transition-with-transform($nav-anim-duration)
     // By default, `nav` panes are hidden off the edge of the screen
-    translate-right: -100%
-    // We keep the same right as the medium size to avoid transitions off screen
-    right: 300%
+    transform: translate3d(100%,0,0)
 
   // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
   // pane slides out.
@@ -70,6 +98,4 @@ document, nav menu
 
   // Slide the panes in.
   .nav-expanded nav sections
-    transition-with-transform($nav-anim-duration, right 0ms 0ms)
-    translate-right: 0
-    right: 0
+    transform: translate3d(0,0,0)

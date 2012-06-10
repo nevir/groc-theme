@@ -38,7 +38,7 @@ segment > *
 
 // Nav components are always top right.  We don't position the nav, though, so
 // that we have more control over animations.
-nav > *
+nav menu, nav sections
   position: absolute
   top:      0px
   right:    0px
@@ -69,7 +69,7 @@ nav sections
 @media (max-width: 550px)
   // A small screen is a single column layout with the nav at the top of the
   // document.
-  nav
+  nav menu, nav sections
     width: 100%
   segment
     display: block
