@@ -4,7 +4,7 @@ $ ->
   # Make sure that the menu is properly offset if we have a document scroll bar
   $('nav > *').cssNoTrans right: scrollbar_metrics.width
 
-  $('document').scrollFix()
+  $('document, nav sections > *').scrollFix()
 
 DISABLE_TRANSITION = """
   -webkit-transition: none !important;

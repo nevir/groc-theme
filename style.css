@@ -124,7 +124,10 @@ segment,
 comments,
 menu,
 action,
-sections {
+sections,
+list,
+node,
+item {
   display: block;
 }
 code {
@@ -243,6 +246,30 @@ nav sections > * {
   top: 0;
   width: 100%;
   height: 100%;
+  padding: 0 11px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+node {
+  line-height: 44px;
+}
+node item {
+  padding-left: 22px;
+}
+node node item {
+  padding-left: 44px;
+}
+node node node item {
+  padding-left: 66px;
+}
+node node node node item {
+  padding-left: 88px;
+}
+node node node node node item {
+  padding-left: 110px;
+}
+node node node node node node item {
+  padding-left: 132px;
 }
 @media (max-width: 550px) {
   nav menu,
@@ -432,7 +459,8 @@ nav sections.outline-active outline {
 }
 document,
 nav menu,
-nav .sections-wrapper {
+nav .sections-wrapper,
+nav sections > * {
   -webkit-transform: translate3d(0, 0, 0);
 }
 @media (-webkit-transform-3d) and (max-width: 550px) {

@@ -9,7 +9,7 @@
     $('nav > *').cssNoTrans({
       right: scrollbar_metrics.width
     });
-    return $('document').scrollFix();
+    return $('document, nav sections > *').scrollFix();
   });
 
   DISABLE_TRANSITION = "-webkit-transition: none !important;\n-moz-transition:    none !important;\n-o-transition       none !important;\n-ms-transition      none !important;\ntransition:         none !important;";

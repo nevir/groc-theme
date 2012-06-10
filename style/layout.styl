@@ -74,6 +74,26 @@ nav sections
     top:      0
     width:    100%
     height:   100%
+    padding:  0 rhythm(0.5)
+    // And overflows nicely
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
+// ### Navigation Lists
+
+node
+  line-height:  rhythm(2)
+
+// We can't resort to very much trickery here; if we `position` any of these
+// nodes, iOS will fail to overflow them properly.
+node item { padding-left: rhythm(1) }
+node node item { padding-left: rhythm(2) }
+node node node item { padding-left: rhythm(3) }
+node node node node item { padding-left: rhythm(4) }
+node node node node node item { padding-left: rhythm(5) }
+node node node node node node item { padding-left: rhythm(6) }
+// We can also use the excuse that having too many levels in your hierarchy is
+// a documentation smell, and should be avoided.
 
 
 // ## Small Screens

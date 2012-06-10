@@ -40,7 +40,7 @@ html(lang="en")
 
     nav
       menu
-        a.github(href='https://github.com/') Github
+        a.github(href='https://github.com/')
         action.toc(data-target-section='toc') ToC
         action.outline(data-target-section='outline') Outline
         // input fields don't appear to respond to box-flex properly
@@ -50,6 +50,62 @@ html(lang="en")
       .sections-wrapper
         sections
           toc
-            | Table of Contents
+            node
+              item ToC Root
+            node
+              item Another root node
+              list
+                node
+                  item Sub node #1
+                node
+                  item Sub node #2
+                node
+                  item Sub node #3
+                  list
+                    node
+                      item Subsub node and stuff
+                      list
+                        node
+                          item Subsubsub; Mmm.
+                        node
+                          item Subsubsub Again
+                    node
+                      item Subsub continues
+                node
+                  item Sub node #4
+                  list
+                    node
+                      item Foo.
+                    node
+                      item Bar
+            node
+              item More top level
+            node
+              item You get the idea
+              list
+                node
+                  item Or maybe you don't?
+                  list
+                    node
+                      item Let's try
+                      list
+                        node
+                          item Delving
+                          list
+                            node
+                              item Into
+                              list
+                                node
+                                  item A
+                                  list
+                                    node
+                                      item Deep
+                                      list
+                                        node
+                                          item Hierarchy
+                node
+                  item Assumptions...
+                node
+                  item ... you know what they say
           outline
             | Outline and stuff

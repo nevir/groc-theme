@@ -44,7 +44,7 @@
       </segment>
     </document>
     <nav>
-      <menu><a href="https://github.com/" class="github">Github</a>
+      <menu><a href="https://github.com/" class="github"></a>
         <action data-target-section="toc" class="toc">ToC</action>
         <action data-target-section="outline" class="outline">Outline</action>
         <!-- input fields don't appear to respond to box-flex properly-->
@@ -55,7 +55,99 @@
       <!-- sadface-->
       <div class="sections-wrapper">
         <sections>
-          <toc>Table of Contents</toc>
+          <toc>
+            <node>
+              <item>ToC Root</item>
+            </node>
+            <node>
+              <item>Another root node</item>
+              <list>
+                <node>
+                  <item>Sub node #1</item>
+                </node>
+                <node>
+                  <item>Sub node #2</item>
+                </node>
+                <node>
+                  <item>Sub node #3</item>
+                  <list>
+                    <node>
+                      <item>Subsub node and stuff</item>
+                      <list>
+                        <node>
+                          <item>Subsubsub; Mmm.</item>
+                        </node>
+                        <node>
+                          <item>Subsubsub Again</item>
+                        </node>
+                      </list>
+                    </node>
+                    <node>
+                      <item>Subsub continues</item>
+                    </node>
+                  </list>
+                </node>
+                <node>
+                  <item>Sub node #4</item>
+                  <list>
+                    <node>
+                      <item>Foo.</item>
+                    </node>
+                    <node>
+                      <item>Bar</item>
+                    </node>
+                  </list>
+                </node>
+              </list>
+            </node>
+            <node>
+              <item>More top level</item>
+            </node>
+            <node>
+              <item>You get the idea</item>
+              <list>
+                <node>
+                  <item>Or maybe you don't?</item>
+                  <list>
+                    <node>
+                      <item>Let's try</item>
+                      <list>
+                        <node>
+                          <item>Delving</item>
+                          <list>
+                            <node>
+                              <item>Into</item>
+                              <list>
+                                <node>
+                                  <item>A</item>
+                                  <list>
+                                    <node>
+                                      <item>Deep</item>
+                                      <list>
+                                        <node>
+                                          <item>Hierarchy</item>
+                                        </node>
+                                      </list>
+                                    </node>
+                                  </list>
+                                </node>
+                              </list>
+                            </node>
+                          </list>
+                        </node>
+                      </list>
+                    </node>
+                  </list>
+                </node>
+                <node>
+                  <item>Assumptions...</item>
+                </node>
+                <node>
+                  <item>... you know what they say</item>
+                </node>
+              </list>
+            </node>
+          </toc>
           <outline>Outline and stuff</outline>
         </sections>
       </div>
