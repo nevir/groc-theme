@@ -292,7 +292,7 @@ nav .sections-wrapper {
   position: absolute;
   right: 0px;
   top: 0px;
-  width: 100%;
+  width: 352px;
   height: 0%;
   overflow: hidden;
   -webkit-transition: height 0ms 2250ms;
@@ -300,6 +300,11 @@ nav .sections-wrapper {
   -o-transition: height 0ms 2250ms;
   -ms-transition: height 0ms 2250ms;
   transition: height 0ms 2250ms;
+}
+@media (max-width: 550px) {
+  nav .sections-wrapper {
+    width: 100%;
+  }
 }
 .nav-expanded nav .sections-wrapper {
   -webkit-transition: height 0ms 0ms;
@@ -309,15 +314,8 @@ nav .sections-wrapper {
   transition: height 0ms 0ms;
   height: 100%;
 }
-@media (min-width: 551px) {
-  .nav-expanded nav .sections-wrapper {
-    -webkit-transition: height 0ms 0ms, width 0ms 2250ms;
-    -moz-transition: height 0ms 0ms, width 0ms 2250ms;
-    -o-transition: height 0ms 0ms, width 0ms 2250ms;
-    -ms-transition: height 0ms 0ms, width 0ms 2250ms;
-    transition: height 0ms 0ms, width 0ms 2250ms;
-    width: 352px;
-  }
+sections {
+  overflow: hidden;
 }
 nav sections > * {
   -webkit-transition: left 2250ms;
@@ -473,4 +471,10 @@ nav .sections-wrapper {
     -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+.sections-wrapper {
+  background: rgba(0,0,255,0.05);
+}
+sections {
+  background: rgba(255,0,0,0.05);
 }

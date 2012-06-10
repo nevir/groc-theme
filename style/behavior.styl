@@ -11,23 +11,26 @@ nav .sections-wrapper
   position: absolute
   right:    0px
   top:      0px
-  width:    100%
+  width:    $nav-min-width
   height:   0%
   overflow: hidden
   // On _return_, we flip back to a height of 0% _after_ the animation finishes.
   transition: height 0ms $nav-anim-duration
+  // One exception: for small screens, the wrapper spans the entire page as the
+  // nav is generally not wider than the content
+  @media (max-width: 550px)
+    width: 100%
 
 // On animation start, we immediately expand to full height.
 .nav-expanded nav .sections-wrapper
   transition: height 0ms 0ms
   height: 100%
 
-// One exception: For medium+ screen sizes, we only clip to the width of the
-// `nav`, so that the wrapper isn't overlaying content.
-@media (min-width: 551px)
-  .nav-expanded nav .sections-wrapper
-    transition: height 0ms 0ms, width 0ms $nav-anim-duration
-    width: $nav-min-width
+// We have to clip sections as well, otherwise the individual sections expand
+// its width and you get more movement than is desired
+sections
+  overflow: hidden
+
 
 // ### Individual Nav Sections
 
