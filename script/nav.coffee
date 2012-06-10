@@ -1,15 +1,18 @@
 $ ->
   html$     = $('html')
-  sections$ = $('nav sections > *')
+  sections$ = $('nav sections')
 
   $('nav menu action').on 'click', (evt) ->
     return unless target_section = $(evt.target).data('target-section')
-    active_section = sections$.filter('.active')[0]?.nodeName.toLowerCase()
 
-    if html$.hasClass('nav-expanded') and active_section == target_section
+    if html$.hasClass('nav-expanded') and sections$.hasClass("#{target_section}-active")
       return html$.removeClass('nav-expanded')
 
-    html$.addClass('nav-expanded')
+    unless html$.hasClass('nav-expanded')
+      sections$.children().cssNoTrans() 
+      html$.addClass('nav-expanded')
+    
+    for section in (sections$.children().map (i,n) -> n.nodeName.toLowerCase())
+      sections$.removeClass("#{section}-active")
 
-    sections$.removeClass('active')
-    sections$.filter(target_section).addClass('active')
+    sections$.addClass("#{target_section}-active")

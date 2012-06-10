@@ -1,6 +1,6 @@
 // # Behavior & Animations
 
-$nav-anim-duration = 225ms
+$nav-anim-duration = 2250ms
 
 
 // ## Common Behavior
@@ -29,31 +29,20 @@ nav .sections-wrapper
     transition: height 0ms 0ms, width 0ms $nav-anim-duration
     width: $nav-min-width
 
-// ### Scrollbar Juggling
+// ### Individual Nav Sections
 
-// For browsers with discrete scrollbars (not the iOS-style overlay ones), we
-// need to juggle `nav` nodes for sane transitions.
-//
-// scripts/compat applies the scrollbar width to the `right` property of all
-// direct descendents of `nav`.
+// We slide them back and forth, since they represent a bit of a hierarchy
+nav sections > *
+  transition: left $nav-anim-duration
 
-// Since the document is not positioned for small screens, no need to rely on
-// this hack.
-@media (max-width: 550px)
-  nav > *
-    right: 0 !important
+nav sections.toc-active
+  toc     { left: 0    }
+  outline { left: 100% }
 
-// For large screens, we need to shift the menu as we move the document scroll
-// bar around.
-@media (min-width: 902px)
-  // The sections transition in to the right location, so they're fine.
-  nav .sections-wrapper
-    right: 0 !important
-  // The menu needs to slide
-  nav menu
-    transition: right $nav-anim-duration
-  .nav-expanded nav menu
-    right: 0 !important
+nav sections.outline-active
+  toc     { left: -100% }
+  outline { left:  0    }
+
 
 // ## Small Screens
 
@@ -119,7 +108,36 @@ nav .sections-wrapper
       right: 0
     
 
-// ## WebKit/iOS Tweaks
+// ## Browser-Specific Behaviors
+
+// ### Scrollbar Juggling
+
+// For browsers with discrete scrollbars (not the iOS-style overlay ones), we
+// need to juggle `nav` nodes for sane transitions.
+//
+// scripts/compat applies the scrollbar width to the `right` property of all
+// direct descendents of `nav`.
+
+// Since the document is not positioned for small screens, no need to rely on
+// this hack.
+@media (max-width: 550px)
+  nav > *
+    right: 0 !important
+
+// For large screens, we need to shift the menu as we move the document scroll
+// bar around.
+@media (min-width: 902px)
+  // The sections transition in to the right location, so they're fine.
+  nav .sections-wrapper
+    right: 0 !important
+  // The menu needs to slide
+  nav menu
+    transition: right $nav-anim-duration
+  .nav-expanded nav menu
+    right: 0 !important
+
+
+// ### WebKit/iOS Tweaks
 
 // `translate3d` gives us the best (hardware accelerated) animation performance,
 // so we opt to use it when available in webkit
@@ -129,7 +147,7 @@ nav .sections-wrapper
 document, nav menu, nav .sections-wrapper
   -webkit-transform: translate3d(0,0,0)
 
-// ### Small Screens
+// #### Small Screens
 @media (-webkit-transform-3d) and (max-width: 550px)
   nav sections
     -webkit-transition: -webkit-transform $nav-anim-duration
@@ -147,7 +165,7 @@ document, nav menu, nav .sections-wrapper
       -webkit-transform: translate3d(-100%,0,0)
       left: 0
 
-// ### Large Screens
+// #### Large Screens
 @media (-webkit-transform-3d) and (min-width: 902px)
   // We slide the nav panes in for this three column mode
   nav sections

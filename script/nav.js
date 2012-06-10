@@ -4,19 +4,27 @@
   $(function() {
     var html$, sections$;
     html$ = $('html');
-    sections$ = $('nav sections > *');
+    sections$ = $('nav sections');
     return $('nav menu action').on('click', function(evt) {
-      var active_section, target_section, _ref;
+      var section, target_section, _i, _len, _ref;
       if (!(target_section = $(evt.target).data('target-section'))) {
         return;
       }
-      active_section = (_ref = sections$.filter('.active')[0]) != null ? _ref.nodeName.toLowerCase() : void 0;
-      if (html$.hasClass('nav-expanded') && active_section === target_section) {
+      if (html$.hasClass('nav-expanded') && sections$.hasClass("" + target_section + "-active")) {
         return html$.removeClass('nav-expanded');
       }
-      html$.addClass('nav-expanded');
-      sections$.removeClass('active');
-      return sections$.filter(target_section).addClass('active');
+      if (!html$.hasClass('nav-expanded')) {
+        sections$.children().cssNoTrans();
+        html$.addClass('nav-expanded');
+      }
+      _ref = sections$.children().map(function(i, n) {
+        return n.nodeName.toLowerCase();
+      });
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        section = _ref[_i];
+        sections$.removeClass("" + section + "-active");
+      }
+      return sections$.addClass("" + target_section + "-active");
     });
   });
 
