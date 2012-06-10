@@ -1,0 +1,76 @@
+// # Behavior & Animations
+
+$nav-anim-duration = 350ms
+
+translate-right($right)
+  transform: translate3d($right * -1,0,0)
+
+// Until https://github.com/visionmedia/nib/pull/95
+transition-with-transform($args)
+  -webkit-transition: -webkit-transform $args
+  -moz-transition:    -moz-transform $args
+  -o-transition:      -o-transform $args
+  -ms-transition:     -ms-transform $args
+
+// We make sure that our major layers are composited so that webkit is ok w/
+// all this animation.
+document, nav
+  -webkit-transform: translate3d(0,0,0)
+
+// this transition applies when _closing_ the nav sections; so we delay it
+// until the section has slid away.
+nav
+  transition: height 0ms $nav-anim-duration
+  // WebKit can't handle transitions between different units
+  height: 0%
+
+// When we want to show one of the nav sections, we expand it immediately to
+// make room for the active section to animate in.
+.nav-expanded nav
+  transition: height 0ms 0ms
+  height: 100%
+  
+  sections
+    transition-with-transform: $nav-anim-duration
+    // Put us off the edge of the screen
+    translate-right: -100%
+
+
+// ## Small Screens
+
+@media (max-width: 550px)
+  body
+    background: green
+
+
+// ## Medium Screens
+
+@media (min-width: 551px) and (max-width: 901px)
+  body
+    background: blue
+
+// ## Large Screens
+
+// If we have enough room, we display the `nav` pane as a third column
+// `$commentary-max-width + $nav-min-width`
+@media (min-width: 902px)
+  // We slide the nav panes in for this three column mode
+  sections
+    transition-with-transform: $nav-anim-duration
+    // By default, `nav` panes are hidden off the edge of the screen
+    translate-right: -100%
+
+  // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
+  // pane slides out.
+  document
+    transition: right 0ms 0ms
+
+  // We constrict the `document`'s width, but after the nav pane has fully slid
+  // in.
+  .nav-expanded document
+    transition: right 0ms $nav-anim-duration
+    right: $nav-min-width
+
+  // Slide the panes in.
+  .nav-expanded nav sections
+    translate-right: 0

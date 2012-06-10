@@ -10,18 +10,23 @@ debug-overlay($color)
     border: 1px solid rgba($color, 50%)
     pointer-events: none
 
-body > *
+segment, nav
   background: linear-gradient(top, transparent, transparent $base-line-height - 1, rgba(black, 0.2) $base-line-height) 
   background-size: 100% $base-line-height
+segment
+  background-position: 0 ($base-line-height / 2)
 
 nav
   debug-overlay: #990000
   menu
     debug-overlay: #ff00ff
+  toc
+    debug-overlay: #00ff00
+  outline
+    debug-overlay: #0000ff
 
-document
-  debug-overlay: #000099
 segment
+  debug-overlay: #000099
   > comments
     debug-overlay: #009900
   > code

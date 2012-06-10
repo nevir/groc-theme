@@ -123,7 +123,8 @@ document,
 segment,
 comments,
 menu,
-action {
+action,
+sections {
   display: block;
 }
 code {
@@ -188,23 +189,12 @@ body {
 }
 document {
   position: relative;
-  padding: 55px 0px;
 }
-document segment {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -o-box;
-  display: -ms-box;
-  display: box;
+document segment:first-child {
+  padding-top: 44px;
 }
-document segment > comments {
-  width: 550px;
-}
-document segment > code {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
+document segment:last-child {
+  padding-bottom: 44px;
 }
 p,
 code {
@@ -232,10 +222,6 @@ nav {
   right: 0px;
   width: 352px;
 }
-nav toc,
-nav outline {
-  display: none;
-}
 nav menu {
   position: relative;
   display: -webkit-box;
@@ -257,68 +243,117 @@ nav menu .search {
 nav menu .search #search {
   width: 100%;
 }
-body > * {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), color-stop(0.21, transparent), color-stop(0.22, rgba(0,0,0,0.2)));
-  background: -webkit-linear-gradient(top, transparent 0%, transparent 21px, rgba(0,0,0,0.2) 22px);
-  background: -moz-linear-gradient(top, transparent 0%, transparent 21px, rgba(0,0,0,0.2) 22px);
-  background: -o-linear-gradient(top, transparent 0%, transparent 21px, rgba(0,0,0,0.2) 22px);
-  background: -ms-linear-gradient(top, transparent 0%, transparent 21px, rgba(0,0,0,0.2) 22px);
-  background: linear-gradient(top, transparent 0%, transparent 21px, rgba(0,0,0,0.2) 22px);
-  -webkit-background-size: 100% 22px;
-  background-size: 100% 22px;
+@media (max-width: 550px) {
+  nav {
+    width: 100%;
+  }
+  segment {
+    display: block;
+  }
+  segment comments {
+    width: auto;
+  }
+  document {
+    overflow: auto;
+  }
 }
-nav:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(153,0,0,0.05);
-  border: 1px solid rgba(153,0,0,0.5);
-  pointer-events: none;
+@media (min-width: 551px) {
+  segment {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -o-box;
+    display: -ms-box;
+    display: box;
+  }
+  segment > comments {
+    width: 550px;
+  }
+  document {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  body {
+    overflow: hidden;
+  }
 }
-nav menu:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255,0,255,0.05);
-  border: 1px solid rgba(255,0,255,0.5);
-  pointer-events: none;
+document,
+nav {
+  -webkit-transform: translate3d(0, 0, 0);
 }
-document:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0,0,153,0.05);
-  border: 1px solid rgba(0,0,153,0.5);
-  pointer-events: none;
+nav {
+  -webkit-transition: height 0ms 350ms;
+  -moz-transition: height 0ms 350ms;
+  -o-transition: height 0ms 350ms;
+  -ms-transition: height 0ms 350ms;
+  transition: height 0ms 350ms;
+  height: 0%;
 }
-segment > comments:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
+.nav-expanded nav {
+  -webkit-transition: height 0ms 0ms;
+  -moz-transition: height 0ms 0ms;
+  -o-transition: height 0ms 0ms;
+  -ms-transition: height 0ms 0ms;
+  transition: height 0ms 0ms;
   height: 100%;
-  width: 100%;
-  background: rgba(0,153,0,0.05);
-  border: 1px solid rgba(0,153,0,0.5);
-  pointer-events: none;
 }
-segment > code:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(153,0,153,0.05);
-  border: 1px solid rgba(153,0,153,0.5);
-  pointer-events: none;
+.nav-expanded nav sections {
+  -webkit-transition: -webkit-transform 350ms;
+  -moz-transition: -moz-transform 350ms;
+  -o-transition: -o-transform 350ms;
+  -ms-transition: -ms-transform 350ms;
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+@media (max-width: 550px) {
+  body {
+    background: #008000;
+  }
+}
+@media (min-width: 551px) and (max-width: 901px) {
+  body {
+    background: #00f;
+  }
+}
+@media (min-width: 902px) {
+  sections {
+    -webkit-transition: -webkit-transform 350ms;
+    -moz-transition: -moz-transform 350ms;
+    -o-transition: -o-transform 350ms;
+    -ms-transition: -ms-transform 350ms;
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+  document {
+    -webkit-transition: right 0ms 0ms;
+    -moz-transition: right 0ms 0ms;
+    -o-transition: right 0ms 0ms;
+    -ms-transition: right 0ms 0ms;
+    transition: right 0ms 0ms;
+  }
+  .nav-expanded document {
+    -webkit-transition: right 0ms 350ms;
+    -moz-transition: right 0ms 350ms;
+    -o-transition: right 0ms 350ms;
+    -ms-transition: right 0ms 350ms;
+    transition: right 0ms 350ms;
+    right: 352px;
+  }
+  .nav-expanded nav sections {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }

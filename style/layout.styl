@@ -4,7 +4,11 @@
 $commentary-max-width = rhythm(25)
 // This is the width of the nav bar when shown on a medium/large screen
 $nav-min-width = rhythm(16)
-
+// NOTE: stylus currently doesn't support interpolation within `@media` queries.
+// Whenever you make a change to these configuration values, make sure to update
+// the `@media` sections as well.
+//
+// See https://github.com/LearnBoost/stylus/issues/108
 
 // ## Common Layout
 
@@ -13,16 +17,11 @@ document
   position: relative
   // Regardless of screen size, we have enough padding up top to fit the `nav`.
   // This allows for sane transitions, and also just feels good, aesthetically.
-  padding: rhythm(2.5) 0px
- 
-  // This is the signature layout: commentary side by side w/ code.  The nav
-  // also expands so that we end up with a three column layout when it's active.
-  segment
-    display: box
-    > comments
-      width: $commentary-max-width
-    > code
-      box-flex: 1
+  segment:first-child
+    padding-top: rhythm(2)
+  // And on the bottom, too
+  segment:last-child
+    padding-bottom: rhythm(2)
 
 // Perhaps counterintuitively, we use padding instead of margins.  This helps
 // avoid situations where margins escape the node and influence its ancesors,
@@ -46,9 +45,7 @@ nav
   top:      0px
   right:    0px
   width:    $nav-min-width
-  // TEMPORARY
-  toc, outline
-    display: none
+  
 
 // The menu is arranged in a traditional toolbar format
 nav menu
@@ -64,5 +61,46 @@ nav menu
       width: 100%
 
 
-// ## Large Screens
+// ## Small Screens
 
+// `<= $commentary-max-width`
+@media (max-width: 550px)
+  // A small screen is a single column layout with the nav at the top of the
+  // document.
+  nav
+    width: 100%
+  segment
+    display: block
+    comments
+      width: auto
+
+  // We need to poke WebKit for cases when the user resizes from wider than this
+  // to a small screen; the document's scroll offset won't be frozen this way.
+  document
+    overflow: auto
+    
+
+// ## Medium/Large Screens
+
+// `> $commentary-max-width`
+@media (min-width: 551px)
+  // This is the signature layout: commentary side by side w/ code.
+  segment
+    display: box
+    > comments
+      width: $commentary-max-width
+
+  // The document becomes its own scroll area.  We can circumvent `position:
+  // fixed` for the `nav`, which doesn't play nice on mobile webkit.
+  document
+    position: absolute
+    top:      0
+    left:     0
+    bottom:   0
+    right:    0
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
+  // Similarly, we don't want anything overflowing our custom scroll areas
+  body
+    overflow: hidden
