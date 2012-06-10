@@ -86,13 +86,11 @@ nav sections
     width: 100%
   segment
     display: block
-    comments
-      width: auto
+    comments { width: auto }
 
   // We need to poke WebKit for cases when the user resizes from wider than this
   // to a small screen; the document's scroll offset won't be frozen this way.
-  document
-    overflow: auto
+  document { overflow: auto }
     
 
 // ## Medium/Large Screens
@@ -102,8 +100,7 @@ nav sections
   // This is the signature layout: commentary side by side w/ code.
   segment
     display: box
-    > comments
-      width: $commentary-max-width
+    > comments { width: $commentary-max-width }
 
   // The document becomes its own scroll area.  We can circumvent `position:
   // fixed` for the `nav`, which doesn't play nice on mobile webkit.

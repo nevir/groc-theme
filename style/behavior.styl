@@ -28,8 +28,7 @@ nav .sections-wrapper
 
 // We have to clip sections as well, otherwise the individual sections expand
 // its width and you get more movement than is desired
-sections
-  overflow: hidden
+sections { overflow: hidden }
 
 
 // ### Individual Nav Sections
@@ -62,10 +61,8 @@ nav sections.outline-active
 
   // We slide the `nav` in from the right, and the doucment out to the left.
   .nav-expanded
-    nav sections
-      right: 0
-    document
-      left: -100%
+    nav sections { right: 0    }
+    document     { left: -100% }
 
 // ## Medium Screens
 
@@ -95,19 +92,19 @@ nav sections.outline-active
     transition: right $nav-anim-duration
     // By default, `nav` panes are hidden off the edge of the screen
     right: -100%
+  // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
+  // pane slides out.
   document
-    // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
-    // pane slides out.
     transition: right 0ms 0ms
 
   .nav-expanded 
+    // We constrict the `document`'s width, but after the nav pane has fully
+    // slid in.
     document
-      // We constrict the `document`'s width, but after the nav pane has fully
-      // slid in.
       transition: right 0ms $nav-anim-duration
       right: $nav-min-width
+    // Slide the panes in.
     nav sections
-      // Slide the panes in.
       right: 0
     
 
@@ -124,8 +121,7 @@ nav sections.outline-active
 // Since the document is not positioned for small screens, no need to rely on
 // this hack.
 @media (max-width: 550px)
-  nav > *
-    right: 0 !important
+  nav > * { right: 0 !important }
 
 // For large screens, we need to shift the menu as we move the document scroll
 // bar around.
