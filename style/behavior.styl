@@ -1,20 +1,9 @@
 // # Behavior & Animations
 
-$nav-anim-duration = 350ms
-
-// Until https://github.com/visionmedia/nib/pull/95
-transition-with-transform($args, $props...)
-  unshift($props, unquote("transform") $args)
-  for $prefix in webkit moz o ms
-    -{$prefix}-transition: s('-%s-%s', $prefix, unquote(join(', ', $props)))
+$nav-anim-duration = 225ms
 
 
 // ## Common Behavior
-
-// We make sure that our major layers are composited so that webkit is ok w/
-// all this animation.
-document, nav menu
-  -webkit-transform: translate3d(0,0,0)
 
 // We use `.sections-wrapper` to clip our `nav sections` properly, it's a lot
 // simpler than dancing around browser bugs and animation states.
@@ -73,17 +62,18 @@ nav .sections-wrapper
   // isn't a great experience, even on recent WebKits - and
   // `overflow-scrolling: touch` disables tap to tap behavior on an iPhone/iPod)
   nav sections
-    transform: translate3d(100%,0,0)
+    transition: right $nav-anim-duration
+    right: -100%
   document
-    transform: translate3d(0,0,0)
-  nav sections, document
-    transition-with-transform($nav-anim-duration)
+    transition: left $nav-anim-duration
+    left: 0
 
+  // We slide the `nav` in from the right, and the doucment out to the left.
   .nav-expanded
     nav sections
-      transform: translate3d(0,0,0)
+      right: 0
     document
-      transform: translate3d(-100%,0,0)
+      left: -100%
 
 // ## Medium Screens
 
@@ -91,7 +81,10 @@ nav .sections-wrapper
   // Since we don't have enough room to display three columns (`comments`,
   // `code`, `nav`), we opt to go with the pop-over approach.
   nav sections
-    transition-with-transform($nav-anim-duration, "opacity" $nav-anim-duration)
+    // transition: transform $nav-anim-duration, opacity $nav-anim-duration
+    // Until https://github.com/visionmedia/nib/pull/95 hits...
+    for $prefix in webkit moz o ms
+      -{$prefix}-transition: unquote(s("-%s-transform", $prefix)) $nav-anim-duration, opacity $nav-anim-duration
     // By default, faded and zoomed
     opacity:   0.0
     transform: scale(1.1)
@@ -107,21 +100,60 @@ nav .sections-wrapper
 @media (min-width: 902px)
   // We slide the nav panes in for this three column mode
   nav sections
-    transition-with-transform($nav-anim-duration)
+    transition: right $nav-anim-duration
     // By default, `nav` panes are hidden off the edge of the screen
-    transform: translate3d(100%,0,0)
-
-  // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
-  // pane slides out.
+    right: -100%
   document
+    // This kicks in when _hiding_ the nav, it expands immediately as the `nav`
+    // pane slides out.
     transition: right 0ms 0ms
 
-  // We constrict the `document`'s width, but after the nav pane has fully slid
-  // in.
-  .nav-expanded document
-    transition: right 0ms $nav-anim-duration
-    right: $nav-min-width
+  .nav-expanded 
+    document
+      // We constrict the `document`'s width, but after the nav pane has fully
+      // slid in.
+      transition: right 0ms $nav-anim-duration
+      right: $nav-min-width
+    nav sections
+      // Slide the panes in.
+      right: 0
+    
 
-  // Slide the panes in.
+// ## WebKit/iOS Tweaks
+
+// `translate3d` gives us the best (hardware accelerated) animation performance,
+// so we opt to use it when available in webkit
+
+// We make sure that our major layers are composited so that webkit is ok w/
+// all this animation.
+document, nav menu, nav .sections-wrapper
+  -webkit-transform: translate3d(0,0,0)
+
+// ### Small Screens
+@media (-webkit-transform-3d) and (max-width: 550px)
+  nav sections
+    -webkit-transition: -webkit-transform $nav-anim-duration
+    -webkit-transform: translate3d(100%,0,0)
+    right: 0
+  document
+    -webkit-transition: -webkit-transform $nav-anim-duration
+    -webkit-transform: translate3d(0,0,0)
+
+  .nav-expanded
+    nav sections
+      -webkit-transform: translate3d(0,0,0)
+      right: 0
+    document
+      -webkit-transform: translate3d(-100%,0,0)
+      left: 0
+
+// ### Large Screens
+@media (-webkit-transform-3d) and (min-width: 902px)
+  // We slide the nav panes in for this three column mode
+  nav sections
+    -webkit-transition: -webkit-transform $nav-anim-duration
+    -webkit-transform: translate3d(100%,0,0)
+    right: 0
+
   .nav-expanded nav sections
     transform: translate3d(0,0,0)
