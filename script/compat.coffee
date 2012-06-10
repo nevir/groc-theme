@@ -17,6 +17,7 @@ DISABLE_TRANSITION = """
 Zepto.fn.cssNoTrans = (args...) ->
   @css args...
   finalStyle = @attr 'style'
+  finalStyle = '' if finalStyle instanceof CSSStyleDeclaration
 
   # Apparently setting the JS style properties doesn't catch; so we set the
   # style attribute directly.

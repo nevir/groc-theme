@@ -20,6 +20,9 @@
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
     this.css.apply(this, args);
     finalStyle = this.attr('style');
+    if (finalStyle instanceof CSSStyleDeclaration) {
+      finalStyle = '';
+    }
     this.attr('style', "" + finalStyle + "; " + DISABLE_TRANSITION);
     return setTimeout((function() {
       return _this.attr('style', finalStyle);
