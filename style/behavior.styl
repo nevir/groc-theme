@@ -5,8 +5,10 @@ $nav-anim-duration = 225ms
 
 // ## Common Behavior
 
-// We use `.sections-wrapper` to clip our `nav sections` properly, it's a lot
-// simpler than dancing around browser bugs and animation states.
+// We use `.sections-wrapper` to clip our `nav sections` properly; this allows
+// us to easily clip the `nav` transitions to within the window without
+// resorting to `overflow: hidden` on the body which doesn't behave properly in
+// all situations.
 nav .sections-wrapper
   position: absolute
   right:    0px
