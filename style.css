@@ -482,6 +482,11 @@ nav sections > * {
     left: 0;
   }
 }
+@media (max-width: 550px) {
+  nav sections > * {
+    display: none;
+  }
+}
 @media (-webkit-transform-3d) and (min-width: 902px) {
   nav sections {
     -webkit-transition: -webkit-transform 225ms;

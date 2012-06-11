@@ -2,19 +2,32 @@
 (function() {
 
   $(function() {
-    var html$, sections$;
+    var html$, sections$, should_hide_sections;
     html$ = $('html');
     sections$ = $('nav sections');
+    should_hide_sections = false;
+    sections$.on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
+      if (!should_hide_sections) {
+        return;
+      }
+      return sections$.children().css({
+        display: 'none'
+      });
+    });
     return $('nav menu action').on('click', function(evt) {
       var section, target_section, _i, _len, _ref;
+      should_hide_sections = false;
       if (!(target_section = $(evt.target).data('target-section'))) {
         return;
       }
       if (html$.hasClass('nav-expanded') && sections$.hasClass("" + target_section + "-active")) {
+        should_hide_sections = true;
         return html$.removeClass('nav-expanded');
       }
       if (!html$.hasClass('nav-expanded')) {
-        sections$.children().cssNoTrans();
+        sections$.children().cssNoTrans({
+          display: 'block'
+        });
         html$.addClass('nav-expanded');
       }
       _ref = sections$.children().map(function(i, n) {

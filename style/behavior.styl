@@ -166,6 +166,14 @@ document, nav menu, nav .sections-wrapper, nav sections > *
       -webkit-transform: translate3d(-100%,0,0)
       left: 0
 
+@media (max-width: 550px)
+  // Disable scrolling for nav sections unless they're visible - this allows
+  // tap to top behavior.  This only matters on iPhones/iPods - iPads handle
+  // multiple scroll views better.
+  //
+  // The JS layer manages toggling the sections, but we start in the off state.
+  nav sections > * { display: none }
+
 // #### Large Screens
 @media (-webkit-transform-3d) and (min-width: 902px)
   // We slide the nav panes in for this three column mode
